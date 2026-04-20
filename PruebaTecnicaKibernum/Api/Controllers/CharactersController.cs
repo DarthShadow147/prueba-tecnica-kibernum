@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PruebaTecnicaKibernum.Application.Dtos.CharacterDto;
 using PruebaTecnicaKibernum.Application.Interfaces;
 
 namespace PruebaTecnicaKibernum.Api.Controllers
@@ -24,6 +25,20 @@ namespace PruebaTecnicaKibernum.Api.Controllers
             _Logger.LogInformation("Character import completed");
 
             return Ok(new { message = "Characters imported successfully" });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] CharacterQueryParameters pQuery)
+        {
+            var lCharacterData = await _CharacterService.GetPagedAsync(pQuery);
+            return Ok(lCharacterData);
+        }
+
+        [HttpGet("{pId}")]
+        public async Task<IActionResult> GetById(int pId)
+        {
+            var lCharacterData = await _CharacterService.GetCharacterByIdAsync(pId);
+            return Ok(lCharacterData);
         }
     }
 }
