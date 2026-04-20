@@ -8,6 +8,7 @@ namespace PruebaTecnicaKibernum.Application.Interfaces
         Task AddAsync(HiringRequest pRequest);
         Task<List<HiringRequest>> GetFilteredAsync(HiringRequestQueryParams pQuery);
         Task<HiringRequest?> GetByIdAsync(int pId);
+        Task<List<HiringRequest>> GetAllWithCharacterAsync();
         Task SaveChangesAsync();
     }
 }

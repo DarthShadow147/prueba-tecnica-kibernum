@@ -1,4 +1,5 @@
 ﻿using PruebaTecnicaKibernum.Application.Dtos.HiringDto;
+using PruebaTecnicaKibernum.Application.Dtos.SummaryDto;
 using PruebaTecnicaKibernum.Application.Interfaces;
 using PruebaTecnicaKibernum.Domain.Entities;
 using PruebaTecnicaKibernum.Domain.Enums;
@@ -85,6 +86,31 @@ namespace PruebaTecnicaKibernum.Application.Services
                 Status = lHiringData.Status.ToString(),
                 CharacterName = lHiringData.Character.Name
             };
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<HiringSummaryDto> GetSummaryAsync()
+        {
+            var lHiringData = await _Repository.GetAllWithCharacterAsync();
+
+            var lSummary = new HiringSummaryDto
+            {
+                Pending = lHiringData.Count(x => x.Status == RequestStatus.PENDING),
+                InProgress = lHiringData.Count(x => x.Status == RequestStatus.IN_PROCESS),
+                Approved = lHiringData.Count(x => x.Status == RequestStatus.APPROVED),
+                Rejected = lHiringData.Count(x => x.Status == RequestStatus.REJECTED),
+
+                MostRequestedCharacter = lHiringData
+                    .GroupBy(x => x.Character.Name)
+                    .OrderByDescending(g => g.Count())
+                    .Select(g => g.Key)
+                    .FirstOrDefault()
+            };
+
+            return lSummary;
         }
 
         /// <summary>

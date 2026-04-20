@@ -60,6 +60,13 @@ namespace PruebaTecnicaKibernum.Infrastructure.Repositories
                 .FirstOrDefaultAsync(x => x.Id == pId);
         }
 
+        public async Task<List<HiringRequest>> GetAllWithCharacterAsync()
+        {
+            return await _Context.HiringRequest
+                .Include(x => x.Character)
+                .ToListAsync();
+        }
+
         /// <summary>
         /// 
         /// </summary>
