@@ -31,10 +31,17 @@ namespace PruebaTecnicaKibernum.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] HiringRequestQueryParams pQuery)
         {
-            var lData = await _Service.GetAllAsync();
-            return Ok(lData);
+            var lHiringData = await _Service.GetFilteredAsync(pQuery);
+            return Ok(lHiringData);
+        }
+
+        [HttpGet("{pId}")]
+        public async Task<IActionResult> GetById(int pId)
+        {
+            var lHiringData = await _Service.GetByIdAsync(pId);
+            return Ok(lHiringData);
         }
 
         [HttpPatch("{pId}/status")]

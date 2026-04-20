@@ -50,10 +50,11 @@ namespace PruebaTecnicaKibernum.Application.Services
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pQuery"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<HiringRequestDto>> GetAllAsync()
+        public async Task<IEnumerable<HiringRequestDto>> GetFilteredAsync(HiringRequestQueryParams pQuery)
         {
-            var lData = await _Repository.GetAllAsync();
+            var lData = await _Repository.GetFilteredAsync(pQuery);
 
             return lData.Select(x => new HiringRequestDto
             {
@@ -64,6 +65,26 @@ namespace PruebaTecnicaKibernum.Application.Services
                 Status = x.Status.ToString(),
                 CharacterName = x.Character.Name
             });
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <returns></returns>
+        public async Task<HiringRequestDto> GetByIdAsync(int pId)
+        {
+            var lHiringData = await _Repository.GetByIdAsync(pId) ?? throw new ArgumentException("Request not found");
+
+            return new HiringRequestDto
+            {
+                Id = lHiringData.Id,
+                Applicant = lHiringData.Applicant,
+                Event = lHiringData.Event,
+                EventDate = lHiringData.EventDate,
+                Status = lHiringData.Status.ToString(),
+                CharacterName = lHiringData.Character.Name
+            };
         }
 
         /// <summary>

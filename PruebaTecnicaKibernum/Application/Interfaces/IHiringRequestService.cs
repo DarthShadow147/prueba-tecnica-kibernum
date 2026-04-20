@@ -6,7 +6,8 @@ namespace PruebaTecnicaKibernum.Application.Interfaces
     public interface IHiringRequestService
     {
         Task<int> CreateAsync(CreateHiringRequestDto pRequest);
-        Task<IEnumerable<HiringRequestDto>> GetAllAsync();
+        Task<IEnumerable<HiringRequestDto>> GetFilteredAsync(HiringRequestQueryParams pQuery);
+        Task<HiringRequestDto> GetByIdAsync(int pId);
         Task UpdateStatusAsync(int pId, RequestStatus pStatus);
     }
 }
