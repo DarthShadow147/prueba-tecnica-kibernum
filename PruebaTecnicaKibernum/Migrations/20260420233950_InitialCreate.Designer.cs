@@ -11,7 +11,7 @@ using PruebaTecnicaKibernum.Infrastructure.DataContext;
 namespace PruebaTecnicaKibernum.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260420194019_InitialCreate")]
+    [Migration("20260420233950_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

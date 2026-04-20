@@ -32,10 +32,15 @@ builder.Services.AddScoped<IHiringRequestService, HiringRequestService>();
 builder.Services.AddHealthChecks();
 
 //ConnectionString
-var lConnectionString = "Data Source=Data/app.db"; 
+var lConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+var lDataDir = Path.Combine(Directory.GetCurrentDirectory(), "Data");
+if (!Directory.Exists(lDataDir))
+    Directory.CreateDirectory(lDataDir);
+
+//DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(lConnectionString));
-
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
