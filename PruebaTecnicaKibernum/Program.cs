@@ -32,7 +32,7 @@ builder.Services.AddScoped<IHiringRequestService, HiringRequestService>();
 builder.Services.AddHealthChecks();
 
 //ConnectionString
-var lConnectionString = "Data Source=app"; 
+var lConnectionString = "Data Source=Data/app.db"; 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(lConnectionString));
 

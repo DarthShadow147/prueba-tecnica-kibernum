@@ -3,6 +3,16 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# SQLite
+*.db
+*.db-shm
+*.db-wal
+
+# o si usas carpeta Data
+Data/*.db
+Data/*.db-shm
+Data/*.db-wal
+
 # User-specific files
 *.rsuser
 *.suo
