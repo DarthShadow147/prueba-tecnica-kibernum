@@ -113,62 +113,60 @@ Desde la raíz:
 - Health: http://localhost:5000/health
 
 
-Configuración
+## Configuración
 
 La cadena de conexión se maneja desde:
 
+```json
 "ConnectionStrings": {
   "DefaultConnection": "Data Source=Data/app.db"
 }
+```
 
-
-Preparación para Azure
+## Preparación para Azure
 
 El proyecto está preparado para despliegue en Azure:
 
-Uso de variables de entorno
-Endpoint /health
-Configuración desacoplada
-Contenerización lista
+- Uso de variables de entorno
+- Endpoint /health
+- Configuración desacoplada
+- Contenerización lista
 
 
-Decisiones técnicas
-Uso de Clean Architecture para escalabilidad y mantenibilidad
-Repository Pattern para desacoplar EF Core
-DTOs para evitar exponer entidades
-Manejo de rate limiting en consumo externo
-Paginación en endpoints críticos
-Validación centralizada con FluentValidation
+## Decisiones técnicas
+- Uso de Clean Architecture para escalabilidad y mantenibilidad
+- Repository Pattern para desacoplar EF Core
+- DTOs para evitar exponer entidades
+- Manejo de rate limiting en consumo externo
+- Paginación en endpoints críticos
+- Validación centralizada con FluentValidation
 
 
-Cómo probar
-Levantar el proyecto con Docker
-Ir a Swagger
-Ejecutar:
-Importación de personajes
-Crear solicitudes
-Consultar endpoints
-Probar filtros y reportes
+## Cómo probar
+1. Levantar el proyecto con Docker
+2. Ir a Swagger
+3. Ejecutar:
+- Importación de personajes
+- Crear solicitudes
+- Consultar endpoints
+- Probar filtros y reportes
 
 
-Migraciones de Base de Datos
-
+## Migraciones de Base de Datos
 El proyecto utiliza Entity Framework Core (Code First) para la creación y actualización de la base de datos.
 
+## Crear la base de datos (primera vez)
+`dotnet ef migrations add InitialCreate`
+`dotnet ef database update`
 
-Crear la base de datos (primera vez)
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-
-
-Importante
-Ejecutar los comandos desde la carpeta donde se encuentra el archivo .csproj
-La base de datos se genera automáticamente en:
-/Data/app.db
+## Importante
+- Ejecutar los comandos desde la carpeta donde se encuentra el archivo .csproj
+- La base de datos se genera automáticamente en:
+`/Data/app.db`
 
 
-Notas
-Archivos SQLite (.db, .shm, .wal) están excluidos del repositorio
-La base de datos se genera automáticamente con migraciones
-No es necesario crear la base de datos manualmente
-Si la base de datos se elimina, puede recrearse ejecutando nuevamente los comandos anteriores
+## Notas
+- Archivos SQLite (.db, .shm, .wal) están excluidos del repositorio
+- La base de datos se genera automáticamente con migraciones
+- No es necesario crear la base de datos manualmente
+- Si la base de datos se elimina, puede recrearse ejecutando nuevamente los comandos anteriores
