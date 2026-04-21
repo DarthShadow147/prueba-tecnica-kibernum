@@ -14,10 +14,20 @@ namespace PruebaTecnicaKibernum.Infrastructure.ExternalServices
         }
 
         /// <summary>
-        /// 
+        /// Obtiene una página de personajes desde la API externa de Rick & Morty
         /// </summary>
-        /// <param name="pPage"></param>
-        /// <returns></returns>
+        /// <param name="pPage">Número de página a consultar</param>
+        /// <returns>
+        /// Un objeto con la información de los personajes,
+        /// o null si no se puede deserializar la respuesta.
+        /// </returns>
+        /// <exception cref="Exception">
+        /// Se lanza cuando se excede el número de reintentos debido a limitaciones de la API
+        /// </exception>
+        /// <remarks>
+        /// Este método consume la API externa utilizando HttpClient e implementa
+        /// un mecanismo de resiliencia frente a errores de tipo "Too Many Requests" (HTTP 429).
+        /// </remarks>
         public async Task<RickAndMortyResponseDto?> GetCharactersAsync(int pPage)
         {
             int lRetries = 3;

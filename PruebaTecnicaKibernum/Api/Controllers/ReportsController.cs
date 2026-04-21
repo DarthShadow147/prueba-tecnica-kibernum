@@ -14,6 +14,10 @@ namespace PruebaTecnicaKibernum.Api.Controllers
             _Service = Service;
         }
 
+        /// <summary>
+        /// Obtiene un resumen de solicitudes
+        /// </summary>
+        /// <returns>Totales por estado y el personaje más solicitado</returns>
         [HttpGet]
         public async Task<IActionResult> GetSummary()
         {

@@ -17,8 +17,15 @@ namespace PruebaTecnicaKibernum.Api.Controllers
             _Logger = Logger;
         }
 
+        /// <summary>
+        /// Importa personajes desde la API externa de Rick & Morty y los guarda en la base de datos local
+        /// </summary>
+        /// <remarks>
+        /// Evita duplicados utilizando el ExternalId del personaje.
+        /// Puede tardar varios segundos dependiendo de la cantidad de páginas.
+        /// </remarks>
         [HttpPost("import")]
-        public async Task<IActionResult> Import(CancellationToken cancellationToken)
+        public async Task<IActionResult> Import()
         {
             _Logger.LogInformation("Starting character import");
             await _CharacterService.ImportCharacterAsync();
@@ -27,6 +34,11 @@ namespace PruebaTecnicaKibernum.Api.Controllers
             return Ok(new { message = "Characters imported successfully" });
         }
 
+        /// <summary>
+        /// Obtiene un listado paginado de personajes
+        /// </summary>
+        /// <param name="pQuery">Filtros opcionales: nombre, estado y paginación</param>
+        /// <returns>Listado de personajes con paginación</returns>
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] CharacterQueryParameters pQuery)
         {
@@ -34,6 +46,11 @@ namespace PruebaTecnicaKibernum.Api.Controllers
             return Ok(lCharacterData);
         }
 
+        /// <summary>
+        /// Obtiene el detalle de un personaje específico por su identificador
+        /// </summary>
+        /// <param name="pId">Identificador del personaje</param>
+        /// <returns>Información del personaje</returns>
         [HttpGet("{pId}")]
         public async Task<IActionResult> GetById(int pId)
         {
