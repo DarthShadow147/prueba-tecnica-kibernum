@@ -1,6 +1,6 @@
-Prueba Técnica - Backend .NET 8 (Rick & Morty API)
+# Prueba Técnica - Backend .NET 8 (Rick & Morty API)
 
-Descripción
+## Descripción
 
 Este proyecto consiste en el desarrollo de un servicio backend en .NET 8 Web API que permite:
 
@@ -10,7 +10,7 @@ Exponer una API REST documentada
 Aplicar buenas prácticas de arquitectura, validación, manejo de errores y contenerización
 
 
-Arquitectura
+## Arquitectura
 
 Se implementó una Clean Architecture simplificada, separando responsabilidades en:
 
@@ -24,7 +24,8 @@ Dependency Inversion Principle (DIP)
 Uso de interfaces para repositorios y servicios
 Controllers delgados (sin lógica de negocio)
 
-Tecnologías utilizadas
+## Tecnologías utilizadas
+
 .NET 8 Web API
 Entity Framework Core (Code First + Migrations)
 SQLite
@@ -34,7 +35,7 @@ Swagger / OpenAPI
 Docker & Docker Compose
 
 
-API Externa
+## API Externa
 
 Se consume la API pública:
 
@@ -46,7 +47,8 @@ Paginación completa
 Manejo de rate limiting (429)
 Reintentos con backoff
 
-Funcionalidades
+## Funcionalidades
+
 Personajes
 POST /api/personajes/import → Importar personajes
 GET /api/personajes → Listado paginado con filtros (nombre, estado)
