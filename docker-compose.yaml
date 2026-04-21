@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./PruebaTecnicaKibernum
+    ports:
+      - "5000:8080"
+    volumes:
+      - appdata:/data
+
+volumes:
+  appdata:
