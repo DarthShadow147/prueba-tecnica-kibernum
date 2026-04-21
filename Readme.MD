@@ -156,8 +156,8 @@ El proyecto está preparado para despliegue en Azure:
 El proyecto utiliza Entity Framework Core (Code First) para la creación y actualización de la base de datos.
 
 ## Crear la base de datos (primera vez)
-`dotnet ef migrations add InitialCreate`
-`dotnet ef database update`
+- `dotnet ef migrations add InitialCreate`
+- `dotnet ef database update`
 
 ## Importante
 - Ejecutar los comandos desde la carpeta donde se encuentra el archivo .csproj
