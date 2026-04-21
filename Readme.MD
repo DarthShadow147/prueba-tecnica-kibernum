@@ -1,7 +1,6 @@
 # Prueba Técnica - Backend .NET 8 (Rick & Morty API)
 
 ## Descripción
-
 Este proyecto consiste en el desarrollo de un servicio backend en .NET 8 Web API que permite:
 
 Importar personajes desde la API pública de Rick and Morty
@@ -11,7 +10,6 @@ Aplicar buenas prácticas de arquitectura, validación, manejo de errores y cont
 
 
 ## Arquitectura
-
 Se implementó una Clean Architecture simplificada, separando responsabilidades en:
 
 Domain → Entidades y enums
@@ -25,7 +23,6 @@ Uso de interfaces para repositorios y servicios
 Controllers delgados (sin lógica de negocio)
 
 ## Tecnologías utilizadas
-
 .NET 8 Web API
 Entity Framework Core (Code First + Migrations)
 SQLite
@@ -36,7 +33,6 @@ Docker & Docker Compose
 
 
 ## API Externa
-
 Se consume la API pública:
 
 https://rickandmortyapi.com
@@ -49,12 +45,12 @@ Reintentos con backoff
 
 ## Funcionalidades
 
-Personajes
+### Personajes
 POST /api/personajes/import → Importar personajes
 GET /api/personajes → Listado paginado con filtros (nombre, estado)
 GET /api/personajes/{id} → Detalle de personaje
 
-Solicitudes
+### Solicitudes
 POST /api/solicitudes → Crear solicitud
 GET /api/solicitudes → Listado con filtros (estado, solicitante)
 GET /api/solicitudes/{id} → Detalle de solicitud
@@ -62,12 +58,12 @@ PATCH /api/solicitudes/{id}/status → Actualizar estado
 
 Estados:
 
-Pending
-InProgress
-Approved
-Rejected
+- Pending
+- InProgress
+- Approved
+- Rejected
 
-Reportes
+### Reportes
 GET /api/reportes/solicitudesresumen
 
 Incluye:
@@ -75,44 +71,43 @@ Incluye:
 Totales por estado
 Personaje más solicitado
 
-Health Check
+### Health Check
 GET /health
 
 Endpoint requerido para monitoreo (Azure compatible)
 
 
-Validaciones
-
+## Validaciones
 Se implementaron validaciones con FluentValidation:
 
-Campos obligatorios
-Fechas válidas
-Reglas de negocio
+- Campos obligatorios
+- Fechas válidas
+- Reglas de negocio
 
 
-Manejo de errores
-
+## Manejo de errores
 Se implementó middleware global que:
 
-Captura excepciones
-Retorna respuestas estructuradas
-Incluye traceId para debugging
+- Captura excepciones
+- Retorna respuestas estructuradas
+- Incluye traceId para debugging
 
 
-Base de datos
-SQLite (archivo local)
-Ubicación: /Data/app.db
-Configurada mediante connection string (no hardcodeada)
+## Base de datos
+
+- SQLite (archivo local)
+- Ubicación: /Data/app.db
+- Configurada mediante connection string (no hardcodeada)
 
 
-Docker
+## Docker
 Ejecutar proyecto
 
 Desde la raíz:
 
 docker compose up --build
 
-Acceso
+## Acceso
 Swagger: http://localhost:5000/swagger
 Health: http://localhost:5000/health
 
